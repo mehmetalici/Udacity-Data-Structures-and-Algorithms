@@ -1,0 +1,4 @@
+networkx==1.11
+plotly==2.0.15
+jupyter==1.0.0
+numpy

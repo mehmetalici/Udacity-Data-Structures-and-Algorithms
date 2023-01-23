@@ -1,0 +1,80 @@
+Task 0
+----------
+- This task is achieved by array access.
+- The complexity is O(1).
+
+Task 1
+----------
+- get_column function circulates an array once and it's O(n).
+- get_unique converts a list to a set object. This conversion iterates over each
+element and adds it to a hash map. Therefore the average and worst-case complexities
+are O(n) and O(n**2), respectively. Since hash-collusions almost never happen, we can
+safely assume O(n).
+- get_unique_multi initially collects all numbers using a nested loop. 
+The looped variables are irrelevant to the complexity. It, then, calls
+get_column and get_unique subsequently. Subsequent calls do not increase
+the complexity asymptotically. Therefore it's O(n).
+
+All in all, the task scales linearly w.r.t the size of the records. 
+
+
+Task 2
+----------
+- add_to_dict is dictionary access, so O(1)
+- get_longest_time does a forward pass in calls, which is O(n). 
+  inner for loop is O(1). Then, in Line 37, max()'s complexity is O(n) as it does a single forward pass.
+  Line 38 is dict access which is O(1). 
+
+-- Overall complexity is O(n).
+
+
+
+Task 3
+----------
+PART A:
+- get_unique is O(n) (See Task 2).
+- get_column is O(n) (See Task 1).
+- get_prefix_type determines a number's prefix type that can be either fixed, mobile or telemarket.
+  the complexities are O(n), O(1) and O(1) for fixed, mobile and telemarket checks, respectively.
+
+- get_mobile_prefix runs get_prefix_type to determine the prefix type. 
+  Then, it extracts the prefix based on the type's characteristic 
+  given in the problem's description. 
+  The complexities for extractions are O(n), O(1) and O(1) for fixed, mobile and telemarket,
+  respectively. In mobile and telemarket types, we have fixed access. In fixed type, we have
+  a search for ")" which is O(n). Then, we have slice access which depends on the index of ")", which is O(k). 
+  Therefore, the function's complexity is O(n).
+
+- get_numbers_called_from_area does one forward pass and checks with O(1) at each iteration. 
+  Therefore O(n).
+  
+- For functions get_prefix_type and get_mobile_prefix, the numbers can be assumed to be fixed in length. 
+  Therefore, even though these functions are O(n) w.r.t number length, the number lengths almost
+  never change in length. In every part of the world, it is 10-15 characters long.
+  Therefore, the complexities of these functions reduce to O(1),
+  considering the input of our problem, which is the rows of our records.
+
+-- All in all, Line 145 is O(n), Line 146 is O(n) and Line 149 is O(n log n) as it uses timsort
+   in its backend [1]. Complete complexity is O(n logn).
+
+PART B:
+- get_indices_of_same_area is O(n) due to a forward pass.
+
+- calc_same_area_percentage is a sequence of O(n), O(n) and O(n) (Line 134-136).
+  Percetange calculation is O(1)
+-- All in all it's O(n).
+
+
+Task 4
+------------
+- get_possible_telemarketers adds numbers to sets with two subsequent for loops.
+  Addition to Set is O(1) for each element and O(n) for the whole array.
+  Moreover, the set substraction is O(n).   
+
+- All in all, we have three O(n) subsequently, which makes the complexity O(n).
+
+
+
+References
+------------
+[1]: https://stackoverflow.com/questions/14434490/what-is-the-complexity-of-the-sorted-function
